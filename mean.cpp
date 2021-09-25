@@ -1,10 +1,10 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 void mean(int num[]);
 void median(int num[]);
 void mode(int num[]);
-void sort(int num[]);
 
 int num[5];
 
@@ -15,6 +15,7 @@ int main(){
 	}
 	mean(num);
 	median(num);
+	mode(num);
 }
 
 void mean(int num[]){
@@ -45,8 +46,26 @@ void median(int num[]){
 }
 
 void mode(int num[]){
-	int fnumber = 0;
-	for(int i = 0; i<5; i++){
+	int max = *max_element(num, num + 5);
+	int t = max + 1;
+	int fnumber[t];
+	int m = 0;
+
+	for (int i=0; i<t ; i++){
+		fnumber[i] = 0;
+	}
+
+	for (int i=0; i<5; i++){
+		fnumber[num[i]]++;
+	}
+
+	int j = fnumber[0];
+	for(int i = 1; i<t; i++){
+		if(fnumber[i] > j){
+			j = fnumber[i];
+			m = i;
+		}
 
 	}
+	cout << "The mode is " << m << endl;
 }
