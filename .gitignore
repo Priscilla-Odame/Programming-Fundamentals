@@ -32,4 +32,6 @@
 *.app
 
 #NonExecutables
+*
 !*.cpp
+!*.h
